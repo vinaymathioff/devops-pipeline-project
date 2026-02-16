@@ -25,11 +25,11 @@ RUN apk add zip && \
     zip -r /app.zip /app
 
 # Dev-ready container - actual files will be mounted in
-FROM --platform=$BUILDPLATFORM base AS dev
+FROM base AS dev
 CMD ["mkdocs", "serve", "-a", "0.0.0.0:8000"]
 
 # Do the actual build of the mkdocs site
-FROM --platform=$BUILDPLATFORM base AS build
+FROM base AS build
 COPY . .
 RUN mkdocs build
 
